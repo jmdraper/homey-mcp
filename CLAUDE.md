@@ -8,7 +8,7 @@ Node.js MCP (Model Context Protocol) server that connects Claude to a Homey Pro 
 - `package.json` — dependencies (node-fetch, @modelcontextprotocol/sdk)
 
 ## Environment variables (set externally, not in code)
-- `HOMEY_HOST` — public hostname of the Homey hub (e.g. homey.myserver.me.uk)
+- `HOMEY_HOST` — public hostname of the Homey hub (e.g. your-homey.example.com)
 - `HOMEY_TOKEN` — Homey API bearer token
 
 ## How to restart the server

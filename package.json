@@ -1,13 +1,16 @@
 {
-  "name": "homey-mcp",
+  "name": "@jmdraper/homey-mcp",
   "version": "1.0.0",
-  "description": "",
+  "description": "MCP server connecting Claude to a Homey Pro home automation hub",
   "main": "index.js",
+  "bin": {
+    "homey-mcp": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["homey", "mcp", "home-automation", "claude"],
+  "author": "jmdraper",
   "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
