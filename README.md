@@ -54,4 +54,3 @@ and always picks up the latest published version on restart.
 
 - **Tools not appearing:** Check Claude Desktop was fully restarted; check the config JSON is valid
 - **API errors:** Verify your API key has `flows` scope enabled in Homey settings
-- **Connection errors:** Make sure your Tailscale connection is active when using Claude Desktop
