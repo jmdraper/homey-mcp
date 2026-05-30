@@ -202,6 +202,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       description: "Force the companion app to poll Homey immediately for changes, rather than waiting for the next 5-minute interval. Call this at the start of the sync process to ensure the changelog is up to date.",
       inputSchema: { type: "object", properties: {} },
     },
+    {
+      name: "get_cross_references",
+      description: "Get a cross-reference index showing which flows use each variable, FlowBits event, label, set, timer, and programmatic flow trigger. Computed from the in-memory snapshot — no additional Homey calls needed. Use to answer 'which flows use variable X?' or 'what fires FlowBits event Y?'.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          type: {
+            type: "string",
+            enum: ["variables", "flowbits_events", "flowbits_labels", "flowbits_sets", "timers", "flow_triggers"],
+            description: "Filter to a single reference type. Omit to return all types. Use this when you only need one category to reduce response size.",
+          },
+        },
+      },
+    },
   ],
 }));
 
@@ -403,6 +417,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const data = await companionFetch("/poll", {}, "POST");
         return {
           content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
+        };
+      }
+
+      case "get_cross_references": {
+        const xref = await companionFetch("/cross_references");
+        const result = args.type ? { [args.type]: xref[args.type] } : xref;
+        return {
+          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
         };
       }
 
